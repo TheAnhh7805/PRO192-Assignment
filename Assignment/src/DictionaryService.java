@@ -8,6 +8,6 @@
  * @author Acer
  */
 public interface DictionaryService {
-    void addword(String word, String meaning);
+    void addWord(String word, String meaning);
     String lookupWord(String word);
 }
