@@ -14,4 +14,13 @@ public abstract class DictionaryDecorator implements DictionaryService{
         this.dictionaryDecorator = dictionaryDecorator;
     }
     
+    @Override
+    public void addWord(String word, String meaning){
+        dictionaryDecorator.addWord(word, meaning);
+    }
+    
+    @Override
+    public String lookupWord(String word){
+        return dictionaryDecorator.lookupWord(word);
+    }
 }
