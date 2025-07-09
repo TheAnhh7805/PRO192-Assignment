@@ -27,14 +27,10 @@ public class HandleFile extends DictionaryDecorator {
     @Override
     public void addWord(String word, String meaning) {
         dictionaryDecorator.addWord(word, meaning);
-        try {
-            saveDictionary();
-        } catch (IOException ex) {
-            Logger.getLogger(HandleFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        saveDictionary();
     }
 
-    public void loadDictionary() throws FileNotFoundException, IOException {
+    public void loadDictionary(){
         File D = new File("dictionary.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(D))) {
             while (true) {
@@ -55,7 +51,7 @@ public class HandleFile extends DictionaryDecorator {
         }
     }
     
-    public void saveDictionary() throws IOException{
+    public void saveDictionary(){
         File D = new File("dictionary.txt");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(D))) {
             for (Word word : ((BasicDictionary)dictionaryDecorator).dictionary.values()){
