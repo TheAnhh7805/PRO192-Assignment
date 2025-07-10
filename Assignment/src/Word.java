@@ -9,25 +9,32 @@
  */
 public class Word {
     private String word;
-    private String meaning;
+    private int startIndex;
+    private int endIndex;
 
-    public Word(String word, String meaning) {
+    public Word(String word, int startIndex, int endIndex) {
         this.word = word;
-        this.meaning = meaning;
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
     }
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public int getEndIndex() {
+        return endIndex;
+    }
+    
+    
 
     public String getWord() {
         return word;
     }
 
-    public String getMeaning() {
-        return meaning;
-    }
-
     @Override
     public String toString() {
-        return word + " : " + meaning;
+        return startIndex + ":" + endIndex;
     }
-
-    
+ 
 }
