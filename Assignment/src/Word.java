@@ -8,12 +8,12 @@
  * @author Acer
  */
 public class Word {
-    private String word;
+    private String meaning;
     private int startIndex;
     private int endIndex;
 
-    public Word(String word, int startIndex, int endIndex) {
-        this.word = word;
+    public Word(String meaning, int startIndex, int endIndex) {
+        this.meaning = meaning;
         this.startIndex = startIndex;
         this.endIndex = endIndex;
     }
@@ -28,13 +28,14 @@ public class Word {
     
     
 
-    public String getWord() {
-        return word;
+    public String getMeaning() {
+        return meaning;
     }
 
     @Override
     public String toString() {
-        return startIndex + ":" + endIndex;
+        return startIndex + ":" + endIndex ;
     }
- 
+
+
 }
