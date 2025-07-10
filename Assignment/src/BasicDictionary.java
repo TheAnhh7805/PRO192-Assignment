@@ -13,15 +13,33 @@ import java.util.Map;
  */
 public class BasicDictionary implements DictionaryService{
     protected Map<String, Word> dictionary;
+    private String data;
 
     public BasicDictionary(){
-        dictionary = new HashMap<>();
+        this.dictionary = new HashMap<>();
+        this.data = "";
+    }
+
+    public Map<String, Word> getDictionary() {
+        return dictionary;
+    }
+
+    public void setDictionary(Map<String, Word> dictionary) {
+        this.dictionary = dictionary;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
     
     
     @Override
     public void addWord(String word, String meaning) {
-        dictionary.put(word.toLowerCase(), new Word(word, meaning));
+        dictionary.put(word.toLowerCase(), new Word(meaning, 0,0));
     }
 
     @Override
