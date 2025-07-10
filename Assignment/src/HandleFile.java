@@ -6,8 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,7 +17,6 @@ import java.util.logging.Logger;
  * @author Acer
  */
 public class HandleFile extends DictionaryDecorator {
-
     public HandleFile(DictionaryService dictionaryDecorator) throws IOException {
         super(dictionaryDecorator);
         loadDictionary();
@@ -32,15 +30,20 @@ public class HandleFile extends DictionaryDecorator {
 
     public void loadDictionary(){
         File D = new File("dictionary.txt");
+        BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
         try (BufferedReader br = new BufferedReader(new FileReader(D))) {
             while (true) {
                 String line = br.readLine();
                 if (line == null) {
                     break;
                 }
-                String[] parts = line.split(":", 2);
-                if (parts.length == 2) {
-                    dictionaryDecorator.addWord(parts[0].trim(), parts[1].trim());
+                String[] parts = line.split(":", 3);
+                if (parts.length == 3) {
+                    String word = parts[0].trim();
+                    int startIndex = Integer.parseInt(parts[1].trim());
+                    int endIndex = Integer.parseInt(parts[2].trim());
+                    String meaning = basic.getData().substring(startIndex, endIndex);
+                    basic.getDictionary().put(word, new Word(meaning, startIndex, endIndex));
                 }
                 System.out.println("Dictionary loaded from file.");
             }
@@ -53,9 +56,11 @@ public class HandleFile extends DictionaryDecorator {
     
     public void saveDictionary(){
         File D = new File("dictionary.txt");
+        BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(D))) {
-            for (Word word : ((BasicDictionary)dictionaryDecorator).dictionary.values()){
-                bw.write(word.toString());
+            bw.write("DATA:"+ basic.getData());
+            for (Map.Entry<String, Word> word : basic.dictionary.entrySet()){
+                bw.write(word.getKey() + ":" + word.toString());
                 bw.newLine();
             }
             System.out.println("Dictionary saved to file.");
