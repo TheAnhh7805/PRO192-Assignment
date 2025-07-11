@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Acer
  */
 public class BasicDictionary implements DictionaryService{
-    protected Map<String, Word> dictionary;
+    private Map<String, Word> dictionary;
     private String data;
 
     public BasicDictionary(){
