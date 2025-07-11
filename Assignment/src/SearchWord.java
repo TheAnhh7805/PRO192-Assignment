@@ -7,13 +7,23 @@
  *
  * @author Acer
  */
-public class SearchWord extends DictionaryDecorator{
-    
+public class SearchWord extends DictionaryDecorator {
+
     public SearchWord(DictionaryService dictionaryDecorator) {
         super(dictionaryDecorator);
     }
-    
+
     @Override
-    public String lookupWord(String word){
-        
+    public String lookupWord(String word) {
+        BasicDictionary basic = (BasicDictionary) dictionaryDecorator;
+        if (word.trim().isEmpty()) {
+            return "Word cannot be left blank!";
+        }
+        Word foundWord = basic.getDictionary().get(word);
+        if (foundWord != null) {
+            return foundWord.getMeaning();
+        } else {
+            return word + " does not exist in the dictionary!";
+        }
+    }
 }
