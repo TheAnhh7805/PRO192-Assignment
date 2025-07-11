@@ -34,10 +34,23 @@ public class UserInterface extends DictionaryDecorator {
             }
             switch (choice) {
                 case 1:
-                    
+                    System.out.println("Enter word: ");
+                    String word = sc.nextLine().trim();
+                    System.out.println("Enter meaning: ");
+                    String meaning = sc.nextLine().trim();
+                    addWord(word, meaning);
                     break;
+                case 2:
+                    System.out.println("Enter word: ");
+                    String word1 = sc.nextLine();
+                    lookupWord(word1);
+                    break;
+                case 3:
+                    System.out.println("Exit!");
+                    sc.close();
+                    return;
                 default:
-                    throw new AssertionError();
+                    System.out.println("Invalid selection!");
             }
         }
     }
