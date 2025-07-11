@@ -32,6 +32,10 @@ public class HandleFile extends DictionaryDecorator {
         File D = new File("dictionary.txt");
         BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
         try (BufferedReader br = new BufferedReader(new FileReader(D))) {
+            String data = br.readLine();
+            if(data != null && data.startsWith("DATA:")){
+                basic.setData(data.substring(5).trim());
+            }
             while (true) {
                 String line = br.readLine();
                 if (line == null) {
