@@ -22,12 +22,6 @@ public class HandleFile extends DictionaryDecorator {
         loadDictionary();
     }
     
-    @Override
-    public void addWord(String word, String meaning) {
-        dictionaryDecorator.addWord(word, meaning);
-        saveDictionary();
-    }
-
     public void loadDictionary(){
         File D = new File("dictionary.txt");
         BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
@@ -63,7 +57,7 @@ public class HandleFile extends DictionaryDecorator {
         BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(D))) {
             bw.write("DATA:"+ basic.getData());
-            for (Map.Entry<String, Word> word : basic.dictionary.entrySet()){
+            for (Map.Entry<String, Word> word : basic.getDictionary().entrySet()){
                 bw.write(word.getKey() + ":" + word.toString());
                 bw.newLine();
             }
