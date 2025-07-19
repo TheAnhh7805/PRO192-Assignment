@@ -1,7 +1,7 @@
 package decorator;
 
 
-import model.BasicDictionary;
+import service.BasicDictionary;
 import service.DictionaryService;
 import model.Word;
 
@@ -22,7 +22,7 @@ public class AddWord extends DictionaryDecorator {
 
     @Override
     public void addWord(String word, String meaning) {
-        BasicDictionary basic = (BasicDictionary) dictionaryDecorator;
+        BasicDictionary basic = getBasicDictionary();
         if (word.isEmpty() || meaning.isEmpty()) {
             System.out.println("Word or meaning cannot be left blank!");
             return;
