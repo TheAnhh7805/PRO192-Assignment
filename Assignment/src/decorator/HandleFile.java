@@ -1,4 +1,9 @@
+package decorator;
 
+
+import model.BasicDictionary;
+import service.DictionaryService;
+import model.Word;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

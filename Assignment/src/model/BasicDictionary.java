@@ -1,4 +1,8 @@
+package model;
 
+
+import service.DictionaryService;
+import model.Word;
 import java.util.HashMap;
 import java.util.Map;
 

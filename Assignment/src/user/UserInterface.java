@@ -1,4 +1,8 @@
+package user;
 
+
+import decorator.DictionaryDecorator;
+import service.DictionaryService;
 import java.util.Scanner;
 
 /*

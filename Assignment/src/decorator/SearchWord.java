@@ -1,3 +1,11 @@
+package decorator;
+
+
+import decorator.DictionaryDecorator;
+import model.BasicDictionary;
+import service.DictionaryService;
+import model.Word;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
