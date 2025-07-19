@@ -2,7 +2,7 @@
 import user.UserInterface;
 import decorator.HandleFile;
 import decorator.AddWord;
-import model.BasicDictionary;
+import service.BasicDictionary;
 import service.DictionaryService;
 import java.io.IOException;
 
