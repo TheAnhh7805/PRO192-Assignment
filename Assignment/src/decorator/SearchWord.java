@@ -1,7 +1,6 @@
 package decorator;
 
 
-import decorator.DictionaryDecorator;
 import model.BasicDictionary;
 import service.DictionaryService;
 import model.Word;
