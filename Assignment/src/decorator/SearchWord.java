@@ -1,7 +1,7 @@
 package decorator;
 
 
-import model.BasicDictionary;
+import service.BasicDictionary;
 import service.DictionaryService;
 import model.Word;
 
@@ -22,7 +22,7 @@ public class SearchWord extends DictionaryDecorator {
 
     @Override
     public String lookupWord(String word) {
-        BasicDictionary basic = (BasicDictionary) dictionaryDecorator;
+        BasicDictionary basic = getBasicDictionary();
         if (word.trim().isEmpty()) {
             return "Word cannot be left blank!";
         }
