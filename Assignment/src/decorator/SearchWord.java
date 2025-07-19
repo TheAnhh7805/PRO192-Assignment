@@ -26,7 +26,7 @@ public class SearchWord extends DictionaryDecorator {
         if (word.trim().isEmpty()) {
             return "Word cannot be left blank!";
         }
-        Word foundWord = basic.getDictionary().get(word);
+        Word foundWord = basic.getDictionary().get(word.toLowerCase());
         if (foundWord != null) {
             return foundWord.getMeaning();
         } else {
