@@ -48,7 +48,7 @@ public class UserInterface extends DictionaryDecorator {
                 case 2:
                     System.out.println("Enter word: ");
                     String word1 = sc.nextLine();
-                    System.out.println(lookupWord(word1));
+                    System.out.println("Meaning: "+lookupWord(word1));
                     break;
                 case 3:
                     System.out.println("Exit!");
