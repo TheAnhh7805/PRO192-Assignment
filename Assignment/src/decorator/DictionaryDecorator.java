@@ -1,6 +1,8 @@
 package decorator;
 
 
+import java.util.Dictionary;
+import service.BasicDictionary;
 import service.DictionaryService;
 
 /*
@@ -13,7 +15,7 @@ import service.DictionaryService;
  * @author Acer
  */
 public abstract class DictionaryDecorator implements DictionaryService{
-    protected DictionaryService dictionaryDecorator;
+    public DictionaryService dictionaryDecorator;
 
     public DictionaryDecorator(DictionaryService dictionaryDecorator) {
         this.dictionaryDecorator = dictionaryDecorator;
@@ -27,5 +29,13 @@ public abstract class DictionaryDecorator implements DictionaryService{
     @Override
     public String lookupWord(String word){
         return dictionaryDecorator.lookupWord(word);
+    }
+    public BasicDictionary getBasicDictionary(){
+        DictionaryService current = dictionaryDecorator;
+        while(current instanceof DictionaryDecorator){
+            current= ((DictionaryDecorator) current).dictionaryDecorator;
+        }
+        
+        return (BasicDictionary) current;
     }
 }
