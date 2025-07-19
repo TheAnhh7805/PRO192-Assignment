@@ -16,11 +16,11 @@ import model.Word;
  */
 public class BasicDictionary implements DictionaryService{
     private Map<String, Word> dictionary;
-    private String data;
+    private StringBuilder data;
 
     public BasicDictionary(){
         this.dictionary = new HashMap<>();
-        this.data = "";
+        this.data = new StringBuilder();
     }
 
     public Map<String, Word> getDictionary() {
@@ -31,18 +31,21 @@ public class BasicDictionary implements DictionaryService{
         this.dictionary = dictionary;
     }
 
-    public String getData() {
+    public StringBuilder getData() {
         return data;
     }
 
     public void setData(String data) {
-        this.data = data;
+        this.data = new StringBuilder(data);
     }
     
     
     @Override
     public void addWord(String word, String meaning) {
-        dictionary.put(word.toLowerCase(), new Word(meaning, 0,0));
+        int startIndex = data.length();
+        data.append(meaning);
+        int endIndex = data.length();
+        dictionary.put(word.toLowerCase(), new Word(meaning, startIndex,endIndex));
     }
 
     @Override
