@@ -1,7 +1,7 @@
 package decorator;
 
 
-import model.BasicDictionary;
+import service.BasicDictionary;
 import service.DictionaryService;
 import model.Word;
 import java.io.BufferedReader;
@@ -22,21 +22,27 @@ import java.util.Map;
  * @author Acer
  */
 public class HandleFile extends DictionaryDecorator {
+    private static final String FILE_PATH = "dictionary.txt";
+    private static final String FILE_DATA = "data.txt";
+    
     public HandleFile(DictionaryService dictionaryDecorator) throws IOException {
         super(dictionaryDecorator);
         loadDictionary();
+        saveDictionary();
     }
     
     public void loadDictionary(){
-        File D = new File("dictionary.txt");
-        BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
-        try (BufferedReader br = new BufferedReader(new FileReader(D))) {
+        File D = new File(FILE_PATH);
+        File F = new File(FILE_DATA);
+        BasicDictionary basic = getBasicDictionary();
+        try (BufferedReader br = new BufferedReader(new FileReader(F))) {
             String data = br.readLine();
             if(data != null && data.startsWith("DATA:")){
                 basic.setData(data.substring(5).trim());
             }
+            try (BufferedReader br1 = new BufferedReader(new FileReader(F))){
             while (true) {
-                String line = br.readLine();
+                String line = br1.readLine();
                 if (line == null) {
                     break;
                 }
@@ -50,6 +56,7 @@ public class HandleFile extends DictionaryDecorator {
                 }
                 System.out.println("Dictionary loaded from file.");
             }
+            }
         } catch (FileNotFoundException e) {
             System.out.println("No existing dictionary file found. Starting with empty dictionary.");
         } catch (IOException e) {
@@ -58,14 +65,20 @@ public class HandleFile extends DictionaryDecorator {
     }
     
     public void saveDictionary(){
-        File D = new File("dictionary.txt");
-        BasicDictionary basic = (BasicDictionary)dictionaryDecorator;
+        File D = new File(FILE_PATH);
+        BasicDictionary basic = getBasicDictionary();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(D))) {
-            bw.write("DATA:"+ basic.getData());
             for (Map.Entry<String, Word> word : basic.getDictionary().entrySet()){
                 bw.write(word.getKey() + ":" + word.toString());
                 bw.newLine();
             }
+        }
+        catch (IOException e) {
+            System.out.println("Error saving dictionary file: " + e.getMessage());
+        }
+        File F = new File(FILE_DATA);
+        try (BufferedWriter bw1 = new BufferedWriter(new FileWriter(F))) {
+            bw1.write("DATA:"+ basic.getData());
             System.out.println("Dictionary saved to file.");
         }
         catch (IOException e) {
