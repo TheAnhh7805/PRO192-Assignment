@@ -2,6 +2,7 @@ package user;
 
 
 import decorator.DictionaryDecorator;
+import decorator.HandleFile;
 import service.DictionaryService;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
  */
 public class UserInterface extends DictionaryDecorator {
 
-    private Scanner sc;
+    private final Scanner sc;
 
     public UserInterface(DictionaryService dictionaryDecorator) {
         super(dictionaryDecorator);
@@ -26,9 +27,9 @@ public class UserInterface extends DictionaryDecorator {
         while (true) {
             System.out.println("=== Dictionary Program ===");
             System.out.println("1. Add word");
-            System.out.println("2. Remove word");
+            System.out.println("2. Search word");
             System.out.println("3. Exit");
-            System.out.print("Select function (1-6): ");
+            System.out.print("Select function (1-3): ");
             int choice;
             try {
                 choice = Integer.parseInt(sc.nextLine());
@@ -47,10 +48,18 @@ public class UserInterface extends DictionaryDecorator {
                 case 2:
                     System.out.println("Enter word: ");
                     String word1 = sc.nextLine();
-                    lookupWord(word1);
+                    System.out.println(lookupWord(word1));
                     break;
                 case 3:
                     System.out.println("Exit!");
+                    DictionaryService current = dictionaryDecorator;
+                    while (current instanceof DictionaryDecorator) {
+                        if (current instanceof HandleFile) {
+                            ((HandleFile) current).saveDictionary();
+                            break;
+                        }
+                        current = ((DictionaryDecorator) current).dictionaryDecorator;
+                    }
                     sc.close();
                     return;
                 default:
