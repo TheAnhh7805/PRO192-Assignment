@@ -40,7 +40,7 @@ public class HandleFile extends DictionaryDecorator {
             if(data != null && data.startsWith("DATA:")){
                 basic.setData(data.substring(5).trim());
             }
-            try (BufferedReader br1 = new BufferedReader(new FileReader(F))){
+            try (BufferedReader br1 = new BufferedReader(new FileReader(D))){
             while (true) {
                 String line = br1.readLine();
                 if (line == null) {
@@ -69,7 +69,8 @@ public class HandleFile extends DictionaryDecorator {
         BasicDictionary basic = getBasicDictionary();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(D))) {
             for (Map.Entry<String, Word> word : basic.getDictionary().entrySet()){
-                bw.write(word.getKey() + ":" + word.toString());
+                Word tmp = word.getValue();
+                bw.write(word.getKey() + ":" + tmp.getStartIndex()+":"+tmp.getEndIndex());
                 bw.newLine();
             }
         }
