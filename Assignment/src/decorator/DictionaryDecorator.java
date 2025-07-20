@@ -1,7 +1,6 @@
 package decorator;
 
 
-import java.util.Dictionary;
 import service.BasicDictionary;
 import service.DictionaryService;
 

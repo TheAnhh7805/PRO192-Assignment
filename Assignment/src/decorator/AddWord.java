@@ -2,7 +2,6 @@ package decorator;
 
 import service.BasicDictionary;
 import service.DictionaryService;
-import model.Word;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
