@@ -40,16 +40,9 @@ public class BasicDictionary implements DictionaryService {
 
     @Override
     public void addWord(String word, String meaning) {
-        int startIndex, endIndex;
-        if (dictionary.isEmpty()) {
-            startIndex = 0;
+            int startIndex = data.length();
             data.append(meaning);
-            endIndex = data.length();
-        } else {
-            startIndex = data.length() + 1;
-            data.append(meaning);
-            endIndex = data.length();
-        }
+            int endIndex = data.length();
         dictionary.put(word.toLowerCase(), new Word(meaning, startIndex, endIndex));
     }
 

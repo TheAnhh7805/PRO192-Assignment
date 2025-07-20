@@ -39,7 +39,7 @@ public class DeleteWord extends DictionaryDecorator{
             String meaning  = entry.getValue().getMeaning();
             int startIndex = currentIndex;
             newData.append(meaning);
-            currentIndex += meaning.length()-1;
+            currentIndex += meaning.length();
             int endIndex = currentIndex;
             newDictionary.put(entry.getKey(), new Word(meaning, startIndex, endIndex));
         }
