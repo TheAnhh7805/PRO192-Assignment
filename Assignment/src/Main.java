@@ -2,6 +2,8 @@
 import user.UserInterface;
 import decorator.HandleFile;
 import decorator.AddWord;
+import decorator.DeleteWord;
+import decorator.SearchWord;
 import service.BasicDictionary;
 import service.DictionaryService;
 import java.io.IOException;
@@ -21,11 +23,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
         DictionaryService basic = new BasicDictionary();
-        basic = new AddWord(basic);
         basic = new HandleFile(basic);
+        basic = new AddWord(basic);
+        basic = new SearchWord(basic);
+        basic = new DeleteWord(basic);
         basic = new UserInterface(basic);
+        
         ((UserInterface) basic).run();
     }
     

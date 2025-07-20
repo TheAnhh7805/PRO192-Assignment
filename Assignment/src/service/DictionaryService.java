@@ -12,4 +12,5 @@ package service;
 public interface DictionaryService {
     void addWord(String word, String meaning);
     String lookupWord(String word);
+    void deleteWord(String word);
 }

@@ -28,13 +28,14 @@ public class UserInterface extends DictionaryDecorator {
             System.out.println("=== Dictionary Program ===");
             System.out.println("1. Add word");
             System.out.println("2. Search word");
-            System.out.println("3. Exit");
-            System.out.print("Select function (1-3): ");
+            System.out.println("3. Delete word");
+            System.out.println("4. Exit");
+            System.out.print("Select function (1-4): ");
             int choice;
             try {
                 choice = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a number from 1 to 3!");
+                System.out.println("Please enter a number from 1 to 4!");
                 continue;
             }
             switch (choice) {
@@ -51,6 +52,11 @@ public class UserInterface extends DictionaryDecorator {
                     System.out.println("Meaning: "+lookupWord(word1));
                     break;
                 case 3:
+                    System.out.println("Enter word: ");
+                    String wordDelete = sc.nextLine();
+                    deleteWord(wordDelete);
+                    break;
+                case 4:
                     System.out.println("Exit!");
                     DictionaryService current = dictionaryDecorator;
                     while (current instanceof DictionaryDecorator) {

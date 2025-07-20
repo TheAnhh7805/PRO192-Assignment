@@ -22,15 +22,13 @@ public class SearchWord extends DictionaryDecorator {
 
     @Override
     public String lookupWord(String word) {
-        BasicDictionary basic = getBasicDictionary();
         if (word.trim().isEmpty()) {
             return "Word cannot be left blank!";
         }
-        Word foundWord = basic.getDictionary().get(word.toLowerCase());
-        if (foundWord != null) {
-            return foundWord.getMeaning();
-        } else {
-            return word + " does not exist in the dictionary!";
+        String result = super.lookupWord(word);
+        if(result != null){
+            return result;
         }
+        else return "Word not found!";
     }
 }

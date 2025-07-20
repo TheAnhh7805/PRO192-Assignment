@@ -29,6 +29,12 @@ public abstract class DictionaryDecorator implements DictionaryService{
     public String lookupWord(String word){
         return dictionaryDecorator.lookupWord(word);
     }
+    
+    @Override
+    public void deleteWord(String word) {
+        dictionaryDecorator.deleteWord(word);
+    }
+    
     public BasicDictionary getBasicDictionary(){
         DictionaryService current = dictionaryDecorator;
         while(current instanceof DictionaryDecorator){

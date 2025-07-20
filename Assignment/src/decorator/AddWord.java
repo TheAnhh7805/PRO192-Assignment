@@ -28,7 +28,7 @@ public class AddWord extends DictionaryDecorator {
             System.out.println(word + " already exists in the dictionary!");
             return;
         }
-        dictionaryDecorator.addWord(word, meaning);
+        super.addWord(word, meaning);
         System.out.println("Added word:" + word);
     }
 

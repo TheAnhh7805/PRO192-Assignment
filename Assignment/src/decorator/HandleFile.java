@@ -28,7 +28,6 @@ public class HandleFile extends DictionaryDecorator {
     public HandleFile(DictionaryService dictionaryDecorator) throws IOException {
         super(dictionaryDecorator);
         loadDictionary();
-        saveDictionary();
     }
 
     public void loadDictionary() {
@@ -54,8 +53,8 @@ public class HandleFile extends DictionaryDecorator {
                         String meaning = basic.getData().substring(startIndex, endIndex);
                         basic.getDictionary().put(word, new Word(meaning, startIndex, endIndex));
                     }
-                    System.out.println("Dictionary loaded from file.");
                 }
+                System.out.println("Dictionary loaded from file.");
             }
         } catch (FileNotFoundException e) {
             System.out.println("No existing dictionary file found. Starting with empty dictionary.");
