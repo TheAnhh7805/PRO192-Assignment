@@ -48,7 +48,11 @@ public class BasicDictionary implements DictionaryService {
 
     @Override
     public String lookupWord(String word) {
-        return dictionary.get(word.toLowerCase()).getMeaning();
+        Word foundWord = dictionary.get(word.toLowerCase());
+        if(foundWord != null){
+            return foundWord.getMeaning();
+        }
+        else return word + " not found in dictionary";
     }
 
     @Override
